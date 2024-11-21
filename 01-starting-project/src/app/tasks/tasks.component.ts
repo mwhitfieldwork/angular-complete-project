@@ -1,17 +1,20 @@
 import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
+import { NewTaskComponent } from './new-task/new-task.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskComponent],
+  imports: [TaskComponent, NewTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
 @Input({required: true}) userId!:string;// we sue required true because we KNOW we will get values for these properties
 @Input({required: true}) name!:string; // it might not be initiallized yet
+@Input() isAddingTask = false;
 //@Input() name:string | undefined; //can also use a union as weel
+
 tasks = [
   {
     id: 't1',
@@ -45,4 +48,12 @@ get selectedUserTasks() {
 onCompleteTask(id:string){
   this.tasks = this.tasks.filter((task) => task.id !== id);//deleting tasks of a flat data set
 }
+
+onStartNewTask(){
+  this.isAddingTask = true;
+}
+onCancelAddTask(){
+  this.isAddingTask = false;
+}
+
 }
