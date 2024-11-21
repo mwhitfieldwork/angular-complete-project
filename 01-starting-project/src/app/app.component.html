@@ -1,15 +1,24 @@
 <app-header></app-header>
 <main>
   <ul id="users">
-<li>
-  <app-user [id]="users[0].id" [avatar]="users[0].avatar" [name]="users[0].name" (select)="onSelectUser($event)"/><!-- If the app doesn't have any content to project, you can truncate the tag -->
-</li>
-<li>
-    <app-user [id]="users[1].id" [avatar]="users[1].avatar"  [name]="users[1].name" (select)="onSelectUser($event)" />
-</li>
-<li>
-  <app-user [id]="users[2].id" [avatar]="users[2].avatar" [name]="users[2].name" (select)="onSelectUser($event)"/>
-</li> 
+    @for (user of users; track user.id) {
+      <!--<li *ngFor="let user of users;">  -- legacy -->
+      <li>
+        <app-user [user]="user" (select)="onSelectUser($event)"/><!-- If the app doesn't have any content to project, you can truncate the tag -->
+      </li>
+    } 
 </ul>
-<app-tasks [name]="selectedUser.name"></app-tasks>
+@if (selectedUser) {
+  <app-tasks [name]="selectedUser.name"></app-tasks>
+  <!--<app-tasks [name]="selectedUser?.name"></app-tasks> --><!--if the selected user is defined, use it if not used undefined-->  
+}@else {
+  <p class="fallback">No user selected</p>
+}
+
+<!-- Legacy conditional, must add NgIf and NgFor-->
+<app-tasks *ngIf = "selectedUser" else #noUserSelected [name]="selectedUser!.name"></app-tasks>
+<ng-template #noUserSelected>
+<p class="fallback" >No user selected</p>
+</ng-template>
+
 </main>
