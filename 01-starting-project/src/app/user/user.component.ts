@@ -21,10 +21,8 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 })
 export class UserComponent {
   @Input() user!: User;
-//@Input({required:true}) id!:string;
-//@Input({required: true}) avatar!:string; //{required true} - tells angluar that the property must be set
-//@Input({required: true}) name!:string;// without the required true, the property wont throw an error
-@Output() select= new EventEmitter<string>(); //old way, but you can use generic type to make it stricter
+  @Input({required: true}) selected!: boolean;
+  @Output() select= new EventEmitter<string>(); //old way, but you can use generic type to make it stricter
 //select = output<string>();// new way
 
 get imagePath(){
