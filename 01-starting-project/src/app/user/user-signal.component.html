@@ -3,5 +3,10 @@
         <img [src]="imagePath()" [alt]="selectedUser().name"/> <!-- imagePath is used like a property of the class  -->
         <!-- <span>{{selectedUser.name}}</span> -- old way of doing it  -->
         <span>{{selectedUser().name}}</span> <!-- executes the signal's read function to be re-rendered if it changes-->
+        
+        <!--Signals as inputs-->
+        <img [src]="imagePath()" [alt]="name()"/> <!-- imagePath is used like a property of the class  -->
+        <!-- <span>{{selectedUser.name}}</span> -- old way of doing it  -->
+        <span>{{name()}}</span>
     </button>
 </div>
