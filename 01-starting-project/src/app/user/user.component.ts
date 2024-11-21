@@ -1,15 +1,11 @@
 import { Component, EventEmitter, Input, Output,output} from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
+import { User } from './users.model';
 
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 
-export interface User {
-  id: string;
-  avatar: string;
-  name: string;
-}
-// ORR
- export type Users = {
+// You can always define a type
+ type Users = {
   id: string;
   avatar: string;
   name: string;
