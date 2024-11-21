@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,9 +9,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './new-task.component.css'
 })
 export class NewTaskComponent {
-enteredTitle = '';
-enteredSummary = '';
-enteredDate = '';
+enteredTitle = signal(''); //two way binding with signals
+enteredSummary= signal('');
+enteredDate= signal('');
 @Output()cancel = new EventEmitter<void>();//void means nothing will be bubbled up to the parent
 
   onCancel(){
