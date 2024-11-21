@@ -1,5 +1,5 @@
 <div>
-    <button (click)="onSelectUser()">
+    <button (click)="onSelectUser()" [class.active]="selected">
         <img [src]="imagePath" [alt]="user.name"/> <!-- imagePath is used like a property of the class  -->
         <!-- <span>{{selectedUser.name}}</span> -- old way of doing it  -->
         <span>{{user.name}}</span> <!-- executes the signal's read function to be re-rendered if it changes-->

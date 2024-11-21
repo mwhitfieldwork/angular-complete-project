@@ -17,6 +17,7 @@ export class AppComponent {
   users = DUMMY_USERS;
   selectedUserId?:string;
 
+
   get selectedUser(){
     return this.users.find( x => x.id === this.selectedUserId);// the bang is added because typescript doesnt know if it was for sure find a user  in the find
   }

@@ -4,12 +4,12 @@
     @for (user of users; track user.id) {
       <!--<li *ngFor="let user of users;">  -- legacy -->
       <li>
-        <app-user [user]="user" (select)="onSelectUser($event)"/><!-- If the app doesn't have any content to project, you can truncate the tag -->
+        <app-user [selected]="user.id === selectedUserId" [user]="user" (select)="onSelectUser($event)"/><!-- If the app doesn't have any content to project, you can truncate the tag -->
       </li>
     } 
 </ul>
 @if (selectedUser) {
-  <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name"></app-tasks>
+  <app-tasks  [userId]="selectedUser.id" [name]="selectedUser.name"></app-tasks>
   <!--<app-tasks [name]="selectedUser?.name"></app-tasks> --><!--if the selected user is defined, use it if not used undefined-->  
 }@else {
   <p class="fallback">No user selected</p>
