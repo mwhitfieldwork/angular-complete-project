@@ -29,6 +29,15 @@ private tasks = [
       dueDate: '2024-06-15',
     },
   ]
+
+constructor() {
+    const tasks = localStorage.getItem('tasks');
+
+    if (tasks) {
+        this.tasks = JSON.parse(tasks);
+    }
+}
+
     getUserTasks(userId: string) {
         return this.tasks.filter((task) => task.userId === userId);
     }  
@@ -41,9 +50,15 @@ private tasks = [
             summary: addedTask.summary,
             dueDate: addedTask.dueDate
           })
+        this.saveTasks();
     }
 
     removeTasks(id: string) {
         this.tasks = this.tasks.filter((task) => task.id !== id);//deleting tasks of a flat data set
+        this.saveTasks();
+    }
+
+    private saveTasks() {
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
     }
 }
